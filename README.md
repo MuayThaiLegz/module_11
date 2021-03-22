@@ -46,14 +46,6 @@ Prophet is a procedure for forecasting time series data based on an additive mod
 
 
 ---
-https://en.wikipedia.org/wiki/Scikit-learn
-
-![image](https://user-images.githubusercontent.com/73854785/110356811-7b735780-7fef-11eb-9b55-2831ddab510d.png)
-
-
-
-
-
 --- 
 
 * hvplot example

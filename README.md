@@ -46,7 +46,6 @@ Prophet is a procedure for forecasting time series data based on an additive mod
 
 
 ---
---- 
 
 * hvplot example
 ```
@@ -63,10 +62,12 @@ forecast_mercado_trends_plot.hvplot(
                    grid=True,
                    title='The [yhat],[yhat_lower] and [yhat_upper] columns from the DataFrame',
                    fontscale=1.3)
+                   
+```
 ---
 
 * Prophet example 
-
+```
 from fbprophet import Prophet
 from fbprophet.plot import plot
 from fbprophet.plot import plot_plotly, plot_components_plotly
@@ -86,8 +87,6 @@ future_mercado_trends = model_mercado_trends.make_future_dataframe(periods=2000,
 # View the last five rows of the future_mercado_trends DataFrame
 # YOUR CODE HERE
 future_mercado_trends.tail()
-
-
 ```
 ---
 

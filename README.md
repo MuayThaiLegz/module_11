@@ -18,12 +18,12 @@ Creating dataframes with Pandas methods.
 Using Pandas methods on our dataframes.
 ---
 ```
-balance_sheet_tanglibles.groupby(level=0).plot.bar(
-    title= ('Displays[balance_sheet_tanglibles] per Company'),
-    figsize=(17,13),
-    rot =360, 
-    grid =True, 
-    fontsize = 13)
+# Create a new column in the mercado_stock_trends_df DataFrame called Stock Volatility
+# This column should calculate the standard deviation of the closing stock price return data over a 4 period rolling window
+mercado_stock_trends_df_con['Stock Volatility'] = mercado_stock_trends_df_con['close'].pct_change().dropna().rolling(window=4).std()
+
+
+mercado_stock_trends_df_con
 ```
 ---
 https://pandas.pydata.org/
@@ -57,25 +57,27 @@ https://en.wikipedia.org/wiki/Scikit-learn
 --- 
 
 * hvplot example
-```python
-prices_by_year_by_neighborhood_drop.hvplot.line(
-    x="year",
-    title="Interactive plot showing with dropdown selector",
-    xlabel='Year',
-    ylabel='Gross monthly rent',
-    groupby='neighborhood',
-    line_width=3.3,
-    grid=True,
-    fontscale=1.2,
-    max_height=4500,
-    hover_line_color='red',
-    widget_location='right_top')
 ```
+# Set the index in the forecast_mercado_trends DataFrame to the ds datetime column
+forecast_mercado_trends = forecast_mercado_trends.reset_index().set_index(['ds'])
+# YOUR CODE HERE
+
+# View the only the yhat,yhat_lower and yhat_upper columns from the DataFrame
+# YOUR CODE HERE
+forecast_mercado_trends_plot = forecast_mercado_trends[['yhat','yhat_lower','yhat_upper']]
+forecast_mercado_trends_plot.hvplot(
+                   width=900,
+                   height = 500,
+                   grid=True,
+                   title='The [yhat],[yhat_lower] and [yhat_upper] columns from the DataFrame',
+                   fontscale=1.3)
 ---
 
 * Prophet example 
-```
-import sklearn
+
+from fbprophet import Prophet
+from fbprophet.plot import plot
+from fbprophet.plot import plot_plotly, plot_components_plotly
 
 # Call the Prophet function, store as an object
 model_mercado_trends = Prophet()
@@ -98,7 +100,7 @@ future_mercado_trends.tail()
 ---
 
 
-## This KMeans clustering ML analysis was cntributed to by the entire UC Berkeley FinTech BootCamp 
+## This Prophet forecast analysis was cntributed to by the entire UC Berkeley FinTech BootCamp 
 [UC Berkeley Extension](https://bootcamp.berkeley.edu/fintech/)
 
 ---
